@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const apiUrl = "https://iquimia-production.up.railway.app/top";
+    const apiUrl = "https://iquimia-production.up.railway.app/topActual";
     let employees = [];
 
     const fetchData = async () => {
@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
             row.innerHTML = `
                 <td>${index + 1}</td>
+                 <td>${employee.correo}</td>
                 <td>${employee.nombre}</td>
                 <td>${employee.puntos}</td>
                 <td>${employee.estrellas}</td>
@@ -54,7 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
             populateTable(employees); 
         } else {
             const filteredEmployees = employees.filter(employee =>
-                employee.nombre.toLowerCase().includes(searchTerm)
+                employee.nombre.toLowerCase().includes(searchTerm) ||
+                employee.correo.toLowerCase().includes(searchTerm)
             );
             populateTable(filteredEmployees);
         }
